@@ -8,7 +8,7 @@
 - Log a right-angled triangle to the console
 
 
-- [ x ] Chapter 3
+- [x] Chapter 3
 - Find the minimum of two numbers
 - Recursion practice
 - Count the number of a given letter in a word
