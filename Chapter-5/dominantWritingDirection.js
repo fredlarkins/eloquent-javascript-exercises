@@ -18,9 +18,7 @@ function dominantWritingDirection(text) {
             }
         }
     }
-    return counts.reduce((a, b) => {
-        return a.count > b.count ? a : b; // it's a callback function so you have to return it
-    }).direction;
+    return counts.reduce((a, b) => a.count > b.count ? a : b);
 }
 
 function characterScript(char) {
