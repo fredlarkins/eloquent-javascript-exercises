@@ -18,12 +18,9 @@ function dominantWritingDirection(text) {
             }
         }
     }
-    let largest = 0;
-    let winner;
-    for (let item of counts) {
-        if (item.count > largest) winner = item.direction
-    }
-    return `Winner: ${winner}`;
+    return counts.reduce((a, b) => {
+        return a.count > b.count ? a : b; // it's a callback function so you have to return it
+    }).direction;
 }
 
 function characterScript(char) {
