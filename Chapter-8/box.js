@@ -11,14 +11,15 @@ const box = {
 
 function withBoxUnlocked(action) {
     // unlock box
-    box.unlock();
+    if (box.locked) box.unlock();
     try {
-        return action;
+        return action();
     } finally {
         box.lock();
     }
 }
 
+
 console.log(box);
-withBoxUnlocked(function() { box.content.push('secret sauce')});
+withBoxUnlocked(function() {box.content.push('secret sauce')});
 console.log(box);
