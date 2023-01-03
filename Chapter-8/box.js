@@ -10,16 +10,30 @@ const box = {
 };
 
 function withBoxUnlocked(action) {
-    // unlock box
-    if (box.locked) box.unlock();
+    let boxWasLocked = box.locked;
+    if (boxWasLocked) box.unlock();
     try {
         return action();
     } finally {
-        box.lock();
+        if (boxWasLocked) {
+            box.lock();
+        }
     }
 }
 
 
 console.log(box);
+box.unlock();
 withBoxUnlocked(function() {box.content.push('secret sauce')});
 console.log(box);
+
+try {
+    withBoxUnlocked(function() {
+      throw new Error("Pirates on the horizon! Abort!");
+    });
+  } catch (e) {
+    console.log("Error raised:", e);
+  }
+  
+  console.log(box.locked);
+  // → true
